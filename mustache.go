@@ -307,7 +307,8 @@ func (tmpl *Template) parse() error {
 		case '{':
 			//use a raw tag
 			if tag[len(tag)-1] == '}' {
-				tmpl.elems = append(tmpl.elems, &varElement{tag[1 : len(tag)-1], true})
+				tag = strings.TrimSpace(tag[1 : len(tag)-1])
+				tmpl.elems = append(tmpl.elems, &varElement{tag, true})
 			}
 		default:
 			tmpl.elems = append(tmpl.elems, &varElement{tag, false})
